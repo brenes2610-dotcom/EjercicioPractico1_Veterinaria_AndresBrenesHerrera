@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragmentos/base :: cabeceraBase('Modificar tipo de servicio')}"></head>
+    <body>
+        <header th:replace="~{fragmentos/componentes :: encabezadoClinica}"></header>
+        <nav th:replace="~{fragmentos/componentes :: barraNavegacion}"></nav>
+        <div th:replace="~{fragmentos/componentes :: avisoEmergente}"></div>
+
+        <main class="container my-4">
+            <h2 class="h4 mb-3">Modificar tipo de servicio</h2>
+            <form th:action="@{/tipos/guardar}" th:object="${tipoEdicion}" method="post"
+                  class="card shadow-sm card-body">
+                <input type="hidden" th:field="*{id}">
+                <div class="mb-3">
+                    <label class="form-label" for="nombre">Nombre</label>
+                    <input type="text" id="nombre" class="form-control" th:field="*{nombre}" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="descripcion">Descripción</label>
+                    <input type="text" id="descripcion" class="form-control" th:field="*{descripcion}">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-clinica">Guardar cambios</button>
+                    <a class="btn btn-secondary" th:href="@{/tipos/listado}">Cancelar</a>
+                </div>
+            </form>
+        </main>
+
+        <footer th:replace="~{fragmentos/componentes :: piePagina}"></footer>
+        <th:block th:replace="~{fragmentos/base :: scriptsBase}"></th:block>
+    </body>
+</html>

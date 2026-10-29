@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragmentos/base :: cabeceraBase('Citas programadas')}"></head>
+    <body>
+        <header th:replace="~{fragmentos/componentes :: encabezadoClinica}"></header>
+        <nav th:replace="~{fragmentos/componentes :: barraNavegacion}"></nav>
+        <div th:replace="~{fragmentos/componentes :: avisoEmergente}"></div>
+
+        <main class="container my-4">
+            <h2 class="h4 mb-3"><i class="fa-solid fa-calendar-check"></i> Citas programadas</h2>
+
+            <table class="table table-striped table-hover align-middle bg-white shadow-sm">
+                <thead class="table-success">
+                    <tr>
+                        <th>Mascota</th>
+                        <th>Propietario</th>
+                        <th>Fecha</th>
+                        <th>Servicio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cita : ${listaCitas}">
+                        <td th:text="${cita.nombreMascota}">Mascota</td>
+                        <td th:text="${cita.nombrePropietario}">Propietario</td>
+                        <td th:text="${#temporals.format(cita.fecha, 'dd/MM/yyyy')}">01/01/2026</td>
+                        <td th:text="${cita.servicio.nombre}">Servicio</td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(listaCitas)}">
+                        <td colspan="4" class="text-center text-muted">No hay citas programadas.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+
+        <footer th:replace="~{fragmentos/componentes :: piePagina}"></footer>
+        <th:block th:replace="~{fragmentos/base :: scriptsBase}"></th:block>
+    </body>
+</html>

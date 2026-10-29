@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragmentos/base :: cabeceraBase('Inicio - Clínica Veterinaria')}"></head>
+    <body>
+        <header th:replace="~{fragmentos/componentes :: encabezadoClinica}"></header>
+        <nav th:replace="~{fragmentos/componentes :: barraNavegacion}"></nav>
+        <div th:replace="~{fragmentos/componentes :: avisoEmergente}"></div>
+
+        <main class="container my-4">
+
+            <section class="card tarjeta-campana shadow-sm mb-4">
+                <div class="card-body">
+                    <span class="badge text-bg-warning mb-2">Campaña del mes</span>
+                    <h2 class="h4"><i class="fa-solid fa-syringe"></i> Jornada de Vacunación</h2>
+                    <p class="mb-0">
+                        Durante todo el mes, vacunas antirrábicas y polivalentes con
+                        descuento. ¡Reservá la cita de tu mascota!
+                    </p>
+                </div>
+            </section>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="h5"><i class="fa-solid fa-clock"></i> Horario</h3>
+                            <p class="mb-0" th:text="#{pie.horario}">Horario</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="h5"><i class="fa-solid fa-location-dot"></i> Ubicación</h3>
+                            <p class="mb-0" th:text="#{pie.direccion}">Dirección</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="h5"><i class="fa-solid fa-stethoscope"></i> Especialidades</h3>
+                            <ul class="mb-0">
+                                <li>Medicina general</li>
+                                <li>Vacunación</li>
+                                <li>Estética y baño</li>
+                                <li>Cirugía programada</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="mb-4">
+                <h2 class="h4 mb-3">Conocé nuestras instalaciones</h2>
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                            title="Video de la clínica" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <section id="consultas" class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="h4 mb-3"><i class="fa-solid fa-envelope"></i> Envianos tu consulta</h2>
+                    <form th:action="@{/consultas/enviar}" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="nombreRemitente" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombreRemitente"
+                                       name="nombreRemitente" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="correoRemitente" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="correoRemitente"
+                                       name="correoRemitente" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="nombreMascota" class="form-label">Nombre de la mascota</label>
+                                <input type="text" class="form-control" id="nombreMascota"
+                                       name="nombreMascota" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="textoConsulta" class="form-label">Mensaje</label>
+                                <textarea class="form-control" id="textoConsulta"
+                                          name="textoConsulta" rows="4" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-clinica">
+                                    <i class="fa-solid fa-paper-plane"></i> Enviar consulta
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer th:replace="~{fragmentos/componentes :: piePagina}"></footer>
+        <th:block th:replace="~{fragmentos/base :: scriptsBase}"></th:block>
+    </body>
+</html>

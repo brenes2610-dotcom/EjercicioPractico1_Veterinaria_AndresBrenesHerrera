@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragmentos/base :: cabeceraBase('Modificar servicio')}"></head>
+    <body>
+        <header th:replace="~{fragmentos/componentes :: encabezadoClinica}"></header>
+        <nav th:replace="~{fragmentos/componentes :: barraNavegacion}"></nav>
+        <div th:replace="~{fragmentos/componentes :: avisoEmergente}"></div>
+
+        <main class="container my-4">
+            <h2 class="h4 mb-3">Modificar servicio</h2>
+            <form th:action="@{/servicios/guardar}" th:object="${servicioEdicion}" method="post"
+                  class="card shadow-sm card-body">
+                <input type="hidden" th:field="*{id}">
+                <div class="mb-3">
+                    <label class="form-label" for="nombre">Nombre</label>
+                    <input type="text" id="nombre" class="form-control" th:field="*{nombre}" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="tipo">Tipo de servicio</label>
+                    <select id="tipo" class="form-select" name="tipoServicio.id" required>
+                        <option th:each="tipo : ${listaTipos}"
+                                th:value="${tipo.id}" th:text="${tipo.nombre}"
+                                th:selected="${tipo.id == servicioEdicion.tipoServicio.id}"></option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <label class="form-label" for="precio">Precio</label>
+                        <input type="number" step="0.01" min="0.01" id="precio"
+                               class="form-control" th:field="*{precio}" required>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label class="form-label" for="duracion">Duración (min)</label>
+                        <input type="number" min="1" id="duracion"
+                               class="form-control" th:field="*{duracionMinutos}" required>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-clinica">Guardar cambios</button>
+                    <a class="btn btn-secondary" th:href="@{/servicios/listado}">Cancelar</a>
+                </div>
+            </form>
+        </main>
+
+        <footer th:replace="~{fragmentos/componentes :: piePagina}"></footer>
+        <th:block th:replace="~{fragmentos/base :: scriptsBase}"></th:block>
+    </body>
+</html>

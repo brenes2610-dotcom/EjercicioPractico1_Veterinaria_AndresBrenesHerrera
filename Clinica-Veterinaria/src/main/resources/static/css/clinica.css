@@ -1,0 +1,56 @@
+:root {
+    --color-principal: #1f8a70;
+    --color-principal-oscuro: #166a56;
+    --color-acento: #f4a261;
+    --color-fondo: #f3faf7;
+}
+
+body {
+    background-color: var(--color-fondo);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.encabezado-clinica {
+    background: linear-gradient(135deg, var(--color-principal), var(--color-principal-oscuro));
+    color: #fff;
+}
+
+.barra-clinica {
+    background-color: var(--color-principal-oscuro);
+}
+
+.barra-clinica .nav-link,
+.barra-clinica .navbar-brand {
+    color: #fff;
+}
+
+.barra-clinica .nav-link:hover {
+    color: var(--color-acento);
+}
+
+.pie-clinica {
+    background-color: var(--color-principal-oscuro);
+    color: #fff;
+}
+
+.btn-clinica {
+    background-color: var(--color-principal);
+    border-color: var(--color-principal);
+    color: #fff;
+}
+
+.btn-clinica:hover {
+    background-color: var(--color-principal-oscuro);
+    border-color: var(--color-principal-oscuro);
+    color: #fff;
+}
+
+.tarjeta-campana {
+    border-left: 6px solid var(--color-acento);
+}

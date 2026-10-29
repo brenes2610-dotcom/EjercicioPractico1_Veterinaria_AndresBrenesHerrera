@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+
+        <header th:fragment="encabezadoClinica" class="encabezado-clinica py-4 text-center">
+            <h1 class="h2 mb-1">
+                <i class="fa-solid fa-paw"></i>
+                <span th:text="#{clinica.nombre}">Nombre</span>
+            </h1>
+            <p class="mb-0" th:text="#{clinica.lema}">Lema</p>
+        </header>
+
+        <nav th:fragment="barraNavegacion" class="navbar navbar-expand-lg barra-clinica">
+            <div class="container">
+                <a class="navbar-brand" th:href="@{/}">
+                    <i class="fa-solid fa-house"></i> <span th:text="#{nav.inicio}">Inicio</span>
+                </a>
+                <button class="navbar-toggler bg-light" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/tipos/listado}" th:text="#{nav.tipos}">Tipos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/servicios/listado}" th:text="#{nav.servicios}">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/citas/listado}" th:text="#{nav.citas}">Citas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/#consultas}" th:text="#{nav.consultas}">Consultas</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <footer th:fragment="piePagina" class="pie-clinica py-4 mt-5">
+            <div class="container text-center">
+                <p class="mb-1"><i class="fa-solid fa-location-dot"></i> <span th:text="#{pie.direccion}">Dirección</span></p>
+                <p class="mb-1"><i class="fa-solid fa-phone"></i> <span th:text="#{pie.telefono}">Teléfono</span></p>
+                <p class="mb-1"><i class="fa-solid fa-clock"></i> <span th:text="#{pie.horario}">Horario</span></p>
+                <small th:text="#{pie.derechos}">Derechos</small>
+            </div>
+        </footer>
+
+        <div th:fragment="avisoEmergente">
+            <div class="toast-container position-fixed top-0 end-0 p-3">
+                <div th:if="${mensajeExito}" id="avisoExito"
+                     class="toast text-bg-success" role="alert">
+                    <div class="toast-header">
+                        <strong class="me-auto" th:text="#{aviso.titulo}">Aviso</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                    </div>
+                    <div class="toast-body" th:text="${mensajeExito}">Listo</div>
+                </div>
+                <div th:if="${mensajeError}" id="avisoError"
+                     class="toast text-bg-danger" role="alert">
+                    <div class="toast-header">
+                        <strong class="me-auto" th:text="#{aviso.titulo}">Aviso</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                    </div>
+                    <div class="toast-body" th:text="${mensajeError}">Error</div>
+                </div>
+            </div>
+            <script th:if="${mensajeExito != null or mensajeError != null}">
+                document.querySelectorAll('.toast').forEach(function (t) {
+                    new bootstrap.Toast(t, {delay: 4000}).show();
+                });
+            </script>
+        </div>
+
+    </body>
+</html>
